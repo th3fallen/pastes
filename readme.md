@@ -1,3 +1,1 @@
-# Laravel - A Clean & Classy PHP Framework
-
-## For complete documentation: http://laravel.com
+## The Laravel Paste Bucket
