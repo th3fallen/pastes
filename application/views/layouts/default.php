@@ -4,8 +4,6 @@
 	<meta charset="utf-8">
 	<title>Laravel Paste Bucket</title>
 
-	<link href="http://fonts.googleapis.com/css?family=Ubuntu&amp;v1" rel="stylesheet" type="text/css" media="all" />
-	<link href="http://fonts.googleapis.com/css?family=Lobster+Two&amp;v1" rel="stylesheet" type="text/css" media="all" />
 	<link rel="stylesheet" href="http://yandex.st/highlightjs/6.0/styles/github.min.css">
 
 	<?php echo HTML::script('http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js'); ?>
@@ -35,7 +33,7 @@
 
 	<?php endif; ?>
 
-	<?php echo HTML::style('css/style.css'); ?>
+	<?php echo HTML::style('css/style.css?2'); ?>
 </head>
 <body>
 	<div id="header">
@@ -51,6 +49,7 @@
 			<?php endif; ?>
 		</div>
 	</div>
+	<div style="clear: both;"></div>
 	<div id="wrapper">
 		<?php echo $content; ?>
 	</div>

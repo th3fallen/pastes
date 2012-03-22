@@ -4,7 +4,6 @@ body {
 	color: #6d6d6d;
 	font-family: 'Ubuntu';
 	font-size: 15px;
-	padding-top:4em;
 }
 
 h1.laravel {
@@ -31,7 +30,7 @@ img {
 }
 
 pre code {
-	margin: 0; padding: 0;
+	margin: 0; padding: 10px;
 	font-size: 12px;
 	background-color: #fff;
 }
@@ -42,20 +41,17 @@ textarea {
 }
 
 #header {
-	position:fixed;
 	width:100%;
 	background-color:#eee;
 	border-bottom:1px solid #ddd;
 	padding:1em;
 	margin: 0;
-	left:0;
-	top:0;
 }
 
 #wrapper {
-	background-color: #fff;
+	background-color: #2F3030;
 	margin: 0 2em;
-	padding: 1em;
+	padding-top: 3em;
 }
 
 .links
