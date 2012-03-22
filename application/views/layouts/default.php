@@ -35,80 +35,22 @@
 
 	<?php endif; ?>
 
-	<style type="text/css">
-		body {
-			background-color: #eee;
-			color: #6d6d6d;
-			font-family: 'Ubuntu';
-			font-size: 15px;
-		}
-
-		h1.laravel {
-			font-family: 'Lobster Two', Helvetica, serif;
-			font-size: 60px;
-			margin: 0 0 15px -10px;
-			padding: 0;
-			text-shadow: -1px 1px 1px #fff;
-		}
-
-		h1.laravel a {
-			color: #6d6d6d;
-		}
-
-		a {
-			text-decoration: none;
-			color: #7089b3;
-		}
-
-		img {
-			padding-top: -4px;
-			padding-right: 10px;
-			vertical-align: middle;
-		}
-
-		pre code {
-			margin: 0; padding: 0;
-			font-size: 12px;
-			background-color: #fff;
-		}
-
-		textarea {
-			width: 99%;
-			height: 400px;
-		}
-
-		#header {
-			margin: 0 auto;
-			margin-bottom: 15px;
-			margin-top: 20px;
-			width: 80%;
-		}
-
-		#wrapper {
-			background-color: #fff;
-			border-radius: 10px;
-			margin: 0 auto;
-			padding: 10px;
-			width: 80%;
-			margin-bottom: 10px;
-		}
-	</style>
+	<?php echo HTML::style('css/style.css'); ?>
 </head>
 <body>
 	<div id="header">
-		<h1 class="laravel"><?php echo HTML::link_to_route('new', 'Laravel Paste Bucket'); ?></h1>
-	</div>
+		<img src="http://laravel.com/img/laravel.png" alt="">
 
-	<div id="wrapper">
-		<?php if (Request::route()->is('new')): ?>
-			<a href="javascript: createPaste()"><?php echo HTML::image('img/Save_24x24.png', 'Save'); ?>Create Paste</a>
-		<?php else: ?>
-			<a href="<?php echo URL::to('new'); ?>"><?php echo HTML::image('img/Notepad_24x24.png', 'New'); ?>New Paste</a>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="<?php echo URL::to_route('raw', array($id)); ?>"><?php echo HTML::image('img/raw.png', 'New'); ?>View Raw</a>
-		<?php endif; ?>
+		<div class="links">
+			<?php if (Request::route()->is('new')): ?>
+				<a href="javascript: createPaste()">Create Paste</a>
+			<?php else: ?>
+				<a href="<?php echo URL::to_route('new'); ?>">New Paste</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="<?php echo URL::to_route('raw', array($id)); ?>">View Raw</a>
+			<?php endif; ?>
+		</div>
 	</div>
-
 	<div id="wrapper">
 		<?php echo $content; ?>
 	</div>
