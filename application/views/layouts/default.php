@@ -5,6 +5,7 @@
 	<title>Laravel Paste Bucket</title>
 
 	<link rel="stylesheet" href="http://yandex.st/highlightjs/6.0/styles/github.min.css">
+	<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
 
 	<?php echo HTML::script('http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js'); ?>
 	<?php echo HTML::script('http://yandex.st/highlightjs/6.0/highlight.min.js'); ?>

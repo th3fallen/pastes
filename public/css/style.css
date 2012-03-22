@@ -30,12 +30,15 @@ img {
 }
 
 pre code {
+	font-family: 'Ubuntu Mono', monospace;
 	margin: 0; padding: 10px;
-	font-size: 12px;
+	font-size: 14px;
 	background-color:#fff;
 }
 
 textarea {
+	font-family: 'Ubuntu Mono', monospace;
+	font-size: 14px;
 	width: 99%;
 	height: 400px;
 }
