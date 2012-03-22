@@ -29,6 +29,7 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			hljs.initHighlightingOnLoad();
+			$('#textarea').focus();
 		})
 	</script>
 
