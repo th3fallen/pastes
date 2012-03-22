@@ -1,73 +1,175 @@
 <?php
 
-return array(
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| Simply tell Laravel the HTTP verbs and URIs it should respond to. It is a
+| breeze to setup your applications using Laravel's RESTful routing, and it
+| is perfectly suited for building both large applications and simple APIs.
+| Enjoy the fresh air and simplicity of the framework.
+|
+| Let's respond to a simple GET request to http://example.com/hello:
+|
+|		Route::get('hello', function()
+|		{
+|			return 'Hello World!';
+|		});
+|
+| You can even respond to more than one URI:
+|
+|		Route::post('hello, world', function()
+|		{
+|			return 'Hello World!';
+|		});
+|
+| It's easy to allow URI wildcards using (:num) or (:any):
+|
+|		Route::put('hello/(:any)', function($name)
+|		{
+|			return "Welcome, $name.";
+|		});
+|
+*/
 
-	/*
-	|--------------------------------------------------------------------------
-	| Display the "new paste" view...
-	|--------------------------------------------------------------------------
-	*/
+/*
+|--------------------------------------------------------------------------
+| Display the "new paste" view...
+|--------------------------------------------------------------------------
+*/
 
-	'GET /' => array('name' => 'new', 'do' => function()
+Route::get('/', array('as' => 'new', 'do' => function ()
+{
+	return View::of('layout')->with('content', View::of('home'));
+}));
+
+/*
+|--------------------------------------------------------------------------
+| Create a new paste...
+|--------------------------------------------------------------------------
+*/
+
+Route::post('/', function ()
+{
+	$errors = Paste::validate(Input::get());
+
+	if (count($errors) > 0)
 	{
-		return View::of_layout()->bind('content', View::of_home());
-	}),
+		return Redirect::to('new')->with('errors', $errors);
+	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| Create a new paste...
-	|--------------------------------------------------------------------------
-	*/
+	$paste = new Paste(array('paste' => Input::get('paste')));
 
-	'POST /' => function()
+	$paste->save();
+
+	return Redirect::to_route('paste', array(Math::to_base($paste->id)));
+});
+
+/*
+|--------------------------------------------------------------------------
+| View a raw paste...
+|--------------------------------------------------------------------------
+*/
+
+Route::get('(:any)/raw', array('as' => 'raw', 'do' => function ($id)
+{
+	if ( ! is_null($paste = Paste::find($id = Math::to_base_10($id))))
 	{
-		$errors = Paste::validate(Input::get());
+		return Response::make($paste->paste)->header('Content-Type', 'text/plain');
+	}
 
-		if (count($errors) > 0)
-		{
-			return Redirect::to_new()->with('errors', $errors);
-		}
+	return Response::error('404');
+}));
 
-		$paste = new Paste(array('paste' => Input::get('paste')));
+/*
+|--------------------------------------------------------------------------
+| View an existing paste...
+|--------------------------------------------------------------------------
+*/
 
-		$paste->save();
+Route::get('(:any)', array('as' => 'paste', 'do' => function ($id)
+{
+	$paste = Paste::find(Math::to_base_10($id));
 
-		return Redirect::to_paste(array(Math::to_base($paste->id)));
-	},
-
-	/*
-	|--------------------------------------------------------------------------
-	| View a raw paste...
-	|--------------------------------------------------------------------------
-	*/
-
-	'GET /(:any)/raw' => array('name' => 'raw', 'do' => function($id)
+	if (is_null($paste))
 	{
-		if ( ! is_null($paste = Paste::find($id = Math::to_base_10($id))))
-		{
-			return Response::make($paste->paste)->header('Content-Type', 'text/plain');
-		}
-		
-		return Response::make(View::make('error/404'), 404);
-	}),
+		return Response::error('404');
+	}
 
-	/*
-	|--------------------------------------------------------------------------
-	| View an existing paste...
-	|--------------------------------------------------------------------------
-	*/
+	return View::of('layout')->with('content', View::of('paste')->with('paste', htmlentities($paste->paste)))
+						    ->with('id', $id);
+}));
 
-	'GET /(:any)' => array('name' => 'paste', 'do' => function($id)
-	{
-		$paste = Paste::find(Math::to_base_10($id));
+/*
+|--------------------------------------------------------------------------
+| Application 404 & 500 Error Handlers
+|--------------------------------------------------------------------------
+|
+| To centralize and simplify 404 handling, Laravel uses an awesome event
+| system to retrieve the response. Feel free to modify this function to
+| your tastes and the needs of your application.
+|
+| Similarly, we use an event to handle the display of 500 level errors
+| within the application. These errors are fired when there is an
+| uncaught exception thrown in the application.
+|
+*/
 
-		if (is_null($paste))
-		{
-			return Response::make(View::make('error/404'), 404);
-		}
+Event::listen('404', function()
+{
+	return Response::error('404');
+});
 
-		return View::of_layout()->bind('content', View::of_paste()->bind('paste', htmlentities($paste->paste)))
-							    ->bind('id', $id);
-	}),
+Event::listen('500', function()
+{
+	return Response::error('500');
+});
 
-);
+/*
+|--------------------------------------------------------------------------
+| Route Filters
+|--------------------------------------------------------------------------
+|
+| Filters provide a convenient method for attaching functionality to your
+| routes. The built-in "before" and "after" filters are called before and
+| after every request to your application, and you may even create other
+| filters that can be attached to individual routes.
+|
+| Let's walk through an example...
+|
+| First, define a filter:
+|
+|		Filter::register('filter', function()
+|		{
+|			return 'Filtered!';
+|		});
+|
+| Next, attach the filter to a route:
+|
+|		Router::register('GET /', array('before' => 'filter', function()
+|		{
+|			return 'Hello World!';
+|		}));
+|
+*/
+
+Route::filter('before', function()
+{
+	// Do stuff before every request to your application...
+});
+
+Route::filter('after', function($response)
+{
+	// Do stuff after every request to your application...
+});
+
+Route::filter('csrf', function()
+{
+	if (Request::forged()) return Response::error('500');
+});
+
+Route::filter('auth', function()
+{
+	if (Auth::guest()) return Redirect::to('login');
+});

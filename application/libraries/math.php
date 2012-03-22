@@ -21,7 +21,7 @@ class Math {
 		$limit = strlen($value);
 		$result = strpos(static::$base, $value[0]);
 
-		for($i = 1; $i < $limit; $i++) 
+		for($i = 1; $i < $limit; $i++)
 		{
 			$result = $b * $result + strpos(static::$base, $value[$i]);
 		}

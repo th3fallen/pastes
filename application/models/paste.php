@@ -1,6 +1,9 @@
 <?php
 
-class Paste extends Eloquent {
+class Paste extends Eloquent\Model {
+
+	public static $table = 'pastes';
+	public static $timestamps = true;
 
 	/**
 	 * Validate a new paste.

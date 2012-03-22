@@ -1,87 +1,103 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title>500 - Internal Server Error</title>
+	<head>
+		<meta charset="utf-8">
 
-	<link href="http://fonts.googleapis.com/css?family=Quattrocento&amp;v1" rel="stylesheet" type="text/css" media="all" />
-	<link href="http://fonts.googleapis.com/css?family=Ubuntu&amp;v1" rel="stylesheet" type="text/css" media="all" />
-	<link href="http://fonts.googleapis.com/css?family=Lobster+Two&amp;v1" rel="stylesheet" type="text/css" media="all" />
+		<title>Error 500 - Internal Server Error</title>
 
-	<style type="text/css">
-		body {
-			background-color: #eee;
-			color: #6d6d6d;
-			font-family: 'Ubuntu';
-			font-size: 16px;
-		}
+		<style>
+			@import url(http://fonts.googleapis.com/css?family=Ubuntu);
 
-		a {
-			color: #7089b3;
-			font-weight: bold;
-			text-decoration: none;
-		}
+			body {
+				background: #eee;
+				color: #6d6d6d;
+				font: normal normal normal 14px/1.253 Ubuntu, sans-serif;
+				margin: 0 0 25px 0;
+				min-width: 800px;
+				padding: 0;
+			}
 
-		h1.laravel {
-			font-family: 'Lobster Two', Helvetica, serif;				
-			font-size: 60px;
-			margin: 0 0 15px -10px;
-			padding: 0;
-			text-shadow: -1px 1px 1px #fff;
-		}
+			#main {
+				background-clip: padding-box;
+				background-color: #fff;
+				border:1px solid #ccc;
+				border-radius: 5px;
+				box-shadow: 0 0 10px #cdcdcd;
+				margin: 25px auto 0;
+				padding: 30px;
+				width: 700px;
+				position: relative;
+			}
 
-		h2 {
-			font-family: 'Quattrocento', serif;
-			font-size: 30px;
-			margin: 30px 0 0 0;
-			padding: 0;
-			text-shadow: -1px 1px 1px #fff;
-		}
+			#main h1 {
+				font-family: 'Ubuntu';
+				font-size: 38px;
+				letter-spacing: 2px;
+				margin: 0 0 10px 0;
+				padding: 0;
+			}
 
-		p {
-			margin: 10px 0 0 0;
-			line-height: 25px;
-		}
+			#main h2 {
+				color: #999;
+				font-size: 18px;
+				letter-spacing: 3px;
+				margin: 0 0 25px 0;
+				padding: 0 0 0 0;
+			}
 
-		#header {
-			margin: 0 auto;
-			margin-bottom: 15px;
-			margin-top: 20px;
-			width: 80%;
-		}
+			#main h3 {
+				color: #999;
+				margin-top: 24px;
+				padding: 0 0 0 0;
+			}
 
-		#wrapper {
-			background-color: #fff;
-			border-radius: 10px;
-			margin: 0 auto;
-			padding: 10px;
-			width: 80%;
-		}
+			#main h3 {
+				font-size: 18px;
+			}
 
-		#wrapper h2:first-of-type {
-			margin-top: 0;
-		}
-	</style>
-</head>
-<body>
-	<div id="header">
-		<?php
-			$messages = array('Whoops!', 'Oh no!', 'Ouch!');
-			$message = $messages[mt_rand(0, 2)];
-		?>
+			#main p {
+				line-height: 25px;
+				margin: 10px 0;
+			}
 
-		<h1 class="laravel"><?php echo $message; ?></h1>
-	</div>
+			#main pre {
+				background-color: #333;
+				border-left: 1px solid #d8d8d8;
+				border-top: 1px solid #d8d8d8;
+				border-radius: 5px;
+				color: #eee;
+				padding: 10px;
+			}
 
-	<div id="wrapper">
-		<?php
-			$apologies = array("It's not your fault.", "Don't give up on us.", "We're really sorry.");
-			$apology = $apologies[mt_rand(0, 2)];
-		?>
+			#main ul {
+				margin: 10px 0;
+				padding: 0 30px;
+			}
 
-		<h2><?php echo $apology; ?></h2>
+			#main li {
+				margin: 5px 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="main">
+			<?php $messages = array('Ouch.', 'Oh no!', 'Whoops!'); ?>
 
-		<p>Something failed while we were handling your request. Would you like go to our <a href="<?php echo System\Config::get('application.url'); ?>">home page</a> instead?</p>
-	</div>
-</body>
+			<h1><?php echo $messages[mt_rand(0, 2)]; ?></h1>
+
+			<h2>Server Error: 500 (Internal Server Error)</h2>
+
+			<h3>What does this mean?</h3>
+
+			<p>
+				Something went wrong on our servers while we were processing your request.
+				We're really sorry about this, and will work hard to get this resolved as
+				soon as possible.
+			</p>
+
+			<p>
+				Perhaps you would like to go to our <?php echo HTML::link('/', 'home page'); ?>?
+			</p>
+		</div>
+	</body>
 </html>

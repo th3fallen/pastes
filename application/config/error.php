@@ -4,13 +4,29 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
+	| Ignored Error Levels
+	|--------------------------------------------------------------------------
+	|
+	| Here you simply specify the error levels that should be ignored by the
+	| Laravel error handler. These levels will still be logged; however, no
+	| information about about them will be displayed.
+	|
+	*/
+
+	'ignore' => array(),
+
+	/*
+	|--------------------------------------------------------------------------
 	| Error Detail
 	|--------------------------------------------------------------------------
 	|
-	| Would you like detailed error messages?
+	| Detailed error messages contain information about the file in which an
+	| error occurs, as well as a PHP stack trace containing the call stack.
+	| You'll want them when you're trying to debug your application.
 	|
-	| If your application is in production, consider turning off error details
-	| for enhanced security and user experience.
+	| If your application is in production, you'll want to turn off the error
+	| details for enhanced security and user experience since the exception
+	| stack trace could contain sensitive information.
 	|
 	*/
 
@@ -21,8 +37,9 @@ return array(
 	| Error Logging
 	|--------------------------------------------------------------------------
 	|
-	| Would you like errors to be logged? Error logging can be extremely
-	| helpful when debugging a production application.
+	| When error logging is enabled, the "logger" Closure defined below will
+	| be called for every error in your application. You are free to log the
+	| errors however you want. Enjoy the flexibility.
 	|
 	*/
 
@@ -33,23 +50,37 @@ return array(
 	| Error Logger
 	|--------------------------------------------------------------------------
 	|
-	| Because of the sundry ways of managing error logging, you get complete
-	| flexibility to manage error logging as you see fit.
+	| Because of the various ways of managing error logging, you get complete
+	| flexibility to manage error logging as you see fit. This function will
+	| be called anytime an error occurs within your application and error
+	| logging is enabled. 
 	|
-	| This function will be called when an error occurs in your application.
-	| You can log the error however you like.
-	|
-	| The error "severity" passed to the method is a human-readable severity
-	| level such as "Parsing Error", "Fatal Error", etc.
-	|
-	| A simple logging system has been setup for you. By default, all errors
-	| will be logged to the application/log.txt file.
+	| You may log the error message however you like; however, a simple log
+	| solution has been setup for you which will log all error messages to
+	| text files within the application storage directory.
 	|
 	*/
 
-	'logger' => function($severity, $message)
+	'logger' => function($exception)
 	{
-		System\File::append(APP_PATH.'storage/log.txt', date('Y-m-d H:i:s').' '.$severity.' - '.$message.PHP_EOL);
+		Log::exception($exception);
 	},
+
+	/*
+	|--------------------------------------------------------------------------
+	| PHP INI Display Errors Setting
+	|--------------------------------------------------------------------------
+	|
+	| Here you may specify the display_errors setting of the PHP.ini file.
+	| Typically you may keep this "Off", as Laravel will cleanly handle
+	| the display of all errors.
+	|
+	| However, if you encounter an infamous white screen of death scenario,
+	| turning this "On" may help you solve the problem by getting the
+	| real error message being thrown by the application.
+	|
+	*/
+
+	'display' => 'Off',
 
 );

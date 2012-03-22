@@ -7,11 +7,13 @@ return array(
 	| Application URL
 	|--------------------------------------------------------------------------
 	|
-	| The URL used to access your application. No trailing slash.
+	| The URL used to access your application without a trailing slash. The URL
+	| does not have to be set. If it isn't we'll try our best to guess the URL
+	| of your application.
 	|
 	*/
 
-	'url' => 'http://paste.laravel.com',
+	'url' => '',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -19,35 +21,39 @@ return array(
 	|--------------------------------------------------------------------------
 	|
 	| If you are including the "index.php" in your URLs, you can ignore this.
-	|
-	| However, if you are using mod_rewrite or something similar to get
-	| cleaner URLs, set this option to an empty string.
+	| However, if you are using mod_rewrite to get cleaner URLs, just set
+	| this option to an empty string and we'll take care of the rest.
 	|
 	*/
 
-	'index' => '',
+	'index' => 'index.php',
 
 	/*
 	|--------------------------------------------------------------------------
-	| Application Language
+	| Application Key
 	|--------------------------------------------------------------------------
 	|
-	| The default language of your application. This language will be used by
-	| default by the Lang library when doing string localization.
+	| This key is used by the encryption and cookie classes to generate secure
+	| encrypted strings and hashes. It is extremely important that this key
+	| remain secret and should not be shared with anyone. Make it about 32
+	| characters of random gibberish.
 	|
-	| If you are not using the Lang library, this option isn't really important.
+	| The "auto_key" option tells Laravel to automatically set this key value
+	| if one has not already been set. This is generally done on the first
+	| request to the Laravel splash screen.
 	|
 	*/
 
-	'language' => 'en',
+	'key' => 'YourSecretKeyGoesHere!',
 
 	/*
 	|--------------------------------------------------------------------------
 	| Application Character Encoding
 	|--------------------------------------------------------------------------
 	|
-	| This default character encoding used by your application. This is the
-	| character encoding that will be used by the Str, Text, and Form classes.
+	| The default character encoding used by your application. This encoding
+	| will be used by the Str, Text, Form, and any other classes that need
+	| to know what type of encoding to use for your awesome application.
 	|
 	*/
 
@@ -55,11 +61,41 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
+	| Application Language
+	|--------------------------------------------------------------------------
+	|
+	| The default language of your application. This language will be used by
+	| Lang library as the default language when doing string localization.
+	|
+	*/
+
+	'language' => 'en',
+
+	/*
+	|--------------------------------------------------------------------------
+	| SSL Link Generation
+	|--------------------------------------------------------------------------
+	|
+	| Many sites use SSL to protect their users data. However, you may not be
+	| able to use SSL on your development machine, meaning all HTTPS will be
+	| broken during development.
+	|
+	| For this reason, you may wish to disable the generation of HTTPS links
+	| throughout your application. This option does just that. All attempts
+	| to generate HTTPS links will generate regular HTTP links instead.
+	|
+	*/
+
+	'ssl' => true,
+
+	/*
+	|--------------------------------------------------------------------------
 	| Application Timezone
 	|--------------------------------------------------------------------------
 	|
-	| The default timezone of your application. This timezone will be used when
-	| Laravel needs a date, such as when writing to a log file.
+	| The default timezone of your application. The timezone will be used when
+	| Laravel needs a date, such as when writing to a log file or travelling
+	| to a distant star at warp speed.
 	|
 	*/
 
@@ -67,17 +103,56 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
-	| Application Key
+	| Class Aliases
 	|--------------------------------------------------------------------------
 	|
-	| Your application key should be a 32 character string that is totally
-	| random and secret. This key is used by the encryption class to generate
-	| secure, encrypted strings.
+	| Here, you can specify any class aliases that you would like registered
+	| when Laravel loads. Aliases are lazy-loaded, so feel free to add!
 	|
-	| If you will not be using the encryption class, this doesn't matter.
+	| Aliases make it more convenient to use namespaced classes. Instead of
+	| referring to the class using its full namespace, you may simply use
+	| the alias defined here.
 	|
 	*/
 
-	'key' => '',
+	'aliases' => array(
+		'Auth'       => 'Laravel\\Auth',
+		'Asset'      => 'Laravel\\Asset',
+		'Autoloader' => 'Laravel\\Autoloader',
+		'Bundle'     => 'Laravel\\Bundle',
+		'Cache'      => 'Laravel\\Cache',
+		'Config'     => 'Laravel\\Config',
+		'Controller' => 'Laravel\\Routing\\Controller',
+		'Cookie'     => 'Laravel\\Cookie',
+		'Crypter'    => 'Laravel\\Crypter',
+		'DB'         => 'Laravel\\Database',
+		'Event'      => 'Laravel\\Event',
+		'File'       => 'Laravel\\File',
+		'Filter'     => 'Laravel\\Routing\\Filter',
+		'Form'       => 'Laravel\\Form',
+		'Hash'       => 'Laravel\\Hash',
+		'HTML'       => 'Laravel\\HTML',
+		'Input'      => 'Laravel\\Input',
+		'IoC'        => 'Laravel\\IoC',
+		'Lang'       => 'Laravel\\Lang',
+		'Log'        => 'Laravel\\Log',
+		'Memcached'  => 'Laravel\\Memcached',
+		'Paginator'  => 'Laravel\\Paginator',
+		'URL'        => 'Laravel\\URL',
+		'Redirect'   => 'Laravel\\Redirect',
+		'Redis'      => 'Laravel\\Redis',
+		'Request'    => 'Laravel\\Request',
+		'Response'   => 'Laravel\\Response',
+		'Route'      => 'Laravel\\Routing\\Route',
+		'Router'     => 'Laravel\\Routing\\Router',
+		'Schema'     => 'Laravel\\Database\\Schema',
+		'Section'    => 'Laravel\\Section',
+		'Session'    => 'Laravel\\Session',
+		'Str'        => 'Laravel\\Str',
+		'Task'       => 'Laravel\\CLI\\Tasks\\Task',
+		'URI'        => 'Laravel\\URI',
+		'Validator'  => 'Laravel\\Validator',
+		'View'       => 'Laravel\\View',
+	),
 
 );

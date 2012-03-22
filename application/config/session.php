@@ -7,12 +7,12 @@ return array(
 	| Session Driver
 	|--------------------------------------------------------------------------
 	|
-	| The name of the session driver for your application.
+	| The name of the session driver used by your application. Since HTTP is
+	| stateless, sessions are used to simulate "state" across requests made
+	| by the same user of your application. In other words, it's how an
+	| application knows who the heck you are.
 	|
-	| Since HTTP is stateless, sessions are used to maintain "state" across
-	| multiple requests from the same user of your application.
-	|
-	| Supported Drivers: 'file', 'db', 'memcached', 'apc'.
+	| Drivers: 'cookie', 'file', 'database', 'memcached', 'apc', 'redis'.
 	|
 	*/
 
@@ -23,9 +23,9 @@ return array(
 	| Session Database
 	|--------------------------------------------------------------------------
 	|
-	| The database table on which the session should be stored. 
-	|
-	| If you are not using database based sessions, don't worry about this.
+	| The database table on which the session should be stored. It probably
+	| goes without saying that this option only matters if you are using
+	| the super slick database session driver.
 	|
 	*/
 
@@ -33,10 +33,27 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
+	| Session Garbage Collection Probability
+	|--------------------------------------------------------------------------
+	|
+	| Some session drivers require the manual clean-up of expired sessions.
+	| This option specifies the probability of session garbage collection
+	| occuring for any given request.
+	|
+	| For example, the default value states that garbage collection has a
+	| 2% chance of occuring for any given request to the application.
+	| Feel free to tune this to your application's size and speed.
+	|
+	*/
+
+	'sweepage' => array(2, 100),
+
+	/*
+	|--------------------------------------------------------------------------
 	| Session Lifetime
 	|--------------------------------------------------------------------------
 	|
-	| How many minutes can a session be idle before expiring?
+	| The number of minutes a session can be idle before expiring.
 	|
 	*/
 
@@ -47,11 +64,22 @@ return array(
 	| Session Expiration On Close
 	|--------------------------------------------------------------------------
 	|
-	| Should the session expire when the user's web browser closes?
+	| Determines if the session should expire when the user's web browser closes.
 	|
 	*/
 
 	'expire_on_close' => false,
+
+	/*
+	|--------------------------------------------------------------------------
+	| Session Cookie Name
+	|--------------------------------------------------------------------------
+	|
+	| The name that should be given to the session cookie.
+	|
+	*/
+
+	'cookie' => 'laravel_session',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -77,28 +105,13 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
-	| Session Cookie HTTPS
+	| HTTPS Only Session Cookie
 	|--------------------------------------------------------------------------
 	|
-	| Should the session cookie only be transported over HTTPS?
+	| Determines if the cookie should only be sent over HTTPS.
 	|
 	*/
 
-	'https' => false,
-
-	/*
-	|--------------------------------------------------------------------------
-	| HTTP Only Session Cookie
-	|--------------------------------------------------------------------------
-	|
-	| Should the session cookie only be accessible over HTTP?
-	|
-	| Note: The intention of the "HTTP Only" option is to keep cookies from
-	|       being accessed by client-side scripting languages. However, this
-	|       setting should not be viewed as providing total XSS protection.
-	|
-	*/
-
-	'http_only' => false,
+	'secure' => false,
 
 );
