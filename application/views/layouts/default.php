@@ -37,11 +37,11 @@
 </head>
 <body>
 	<div id="header">
-		<img src="http://laravel.com/img/laravel.png" alt="">
+		<img class="logo" src="http://laravel.com/img/laravel.png" alt="">
 
 		<div class="links">
 			<?php if (Request::route()->is('new')): ?>
-				<a href="javascript: createPaste()">Create Paste</a>
+				<a href="javascript: createPaste()">Save Paste</a>
 			<?php else: ?>
 				<a href="<?php echo URL::to_route('new'); ?>">New Paste</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

@@ -56,7 +56,7 @@ Route::post('/', function ()
 
 	if (count($errors) > 0)
 	{
-		return Redirect::to('new')->with('errors', $errors);
+		return Redirect::to_route('new')->with('errors', $errors);
 	}
 
 	$paste = new Paste(array('paste' => Input::get('paste')));

@@ -32,7 +32,7 @@ img {
 pre code {
 	margin: 0; padding: 10px;
 	font-size: 12px;
-	background-color: #fff;
+	background-color:#fff;
 }
 
 textarea {
@@ -41,17 +41,22 @@ textarea {
 }
 
 #header {
+	position:fixed;
+	left:0;
+	top:0;
 	width:100%;
-	background-color:#eee;
-	border-bottom:1px solid #ddd;
-	padding:1em;
+	background-image:url(http://laravel.com/img/bg-head.png);
+	background-repeat:repeat-x;
+	padding:1.3em 1em 1.7em 1em;
 	margin: 0;
+	overflow:hidden;
 }
 
 #wrapper {
 	background-color: #2F3030;
 	margin: 0 2em;
-	padding-top: 3em;
+	padding:7em 1em 1em 1em;
+	background-color:#fff;
 }
 
 .links
@@ -67,7 +72,18 @@ textarea {
 	font-size:0.8em;
 	display:inline-block;
 	padding:0.5em 1em;
-	background-color:#f6f6f6;
-	color:#333;
-	border-top:1px solid #fff;
+	background-color:#444;
+	color:#ddd;
+	border-radius:4px;
+}
+
+.links a:hover
+{
+	background-color:#EB4D09;
+	color:#fff;
+}
+
+.logo
+{
+	float:left;
 }
