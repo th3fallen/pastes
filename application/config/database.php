@@ -28,7 +28,7 @@ return array(
 	|
 	*/
 
-	'default' => 'mysql',
+	'default' => 'sqlite',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -58,9 +58,9 @@ return array(
 		'mysql' => array(
 			'driver'   => 'mysql',
 			'host'     => 'localhost',
-			'database' => 'paste',
+			'database' => 'database',
 			'username' => 'root',
-			'password' => 'wimble',
+			'password' => '',
 			'charset'  => 'utf8',
 			'prefix'   => '',
 		),
