@@ -163,21 +163,20 @@ textarea
 
 .str, .atv
 {
-  color: #FC0D49;
+  color: #E3B446;
 }
 
 .kwd, .linenums .tag
 {
-  color: #FF4912;
+  color: #DB613B;
 }
 
 .typ, .atn, .dec, .var
 {
-  color: #17CFB6;
+  color: #fff;
 }
 
 .pln
 {
-  color: #ddd;
+  color: #ccc;
 }
-
