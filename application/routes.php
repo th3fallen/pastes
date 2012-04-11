@@ -32,7 +32,6 @@
 |		});
 |
 */
-
 /*
 |--------------------------------------------------------------------------
 | Display the "new paste" view...
@@ -41,7 +40,7 @@
 
 Route::get('/', array('as' => 'new', 'do' => function ()
 {
-	return View::of('layout')->with('content', View::of('home'));
+	return View::make('new')->with('fork', '');
 }));
 
 /*
@@ -84,6 +83,22 @@ Route::get('(:any)/raw', array('as' => 'raw', 'do' => function ($id)
 
 /*
 |--------------------------------------------------------------------------
+| Fork an existing paste...
+|--------------------------------------------------------------------------
+*/
+
+Route::get('(:any)/fork', array('as' => 'fork', 'do' => function ($id)
+{
+	if ( ! is_null($paste = Paste::find($id = Math::to_base_10($id))))
+	{
+		return View::make('new')->with('fork', $paste->paste);
+	}
+
+	return Response::error('404');
+}));
+
+/*
+|--------------------------------------------------------------------------
 | View an existing paste...
 |--------------------------------------------------------------------------
 */
@@ -97,7 +112,7 @@ Route::get('(:any)', array('as' => 'paste', 'do' => function ($id)
 		return Response::error('404');
 	}
 
-	return View::of('layout')->with('content', View::of('paste')->with('paste', htmlentities($paste->paste)))
+	return View::make('view')->with('paste', htmlentities($paste->paste))
 						    ->with('id', $id);
 }));
 
@@ -140,7 +155,7 @@ Event::listen('500', function()
 |
 | First, define a filter:
 |
-|		Filter::register('filter', function()
+|		Route::filter('filter', function()
 |		{
 |			return 'Filtered!';
 |		});

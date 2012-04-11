@@ -1,1 +1,0 @@
-<pre><code><?php echo $paste; ?></pre></code>

@@ -1,0 +1,12 @@
+
+<?php \Laravel\Section::start('buttons'); ?>		
+	<li><a href="javascript: createPaste()" class="save">Save</a></li>
+<?php \Laravel\Section::stop(); ?>
+
+<?php \Laravel\Section::start('content'); ?>
+	<?php echo  Form::open('/', 'POST', array('id' => 'paster')) ; ?>
+		<?php echo  Form::textarea('paste', Input::old('paste', '')) ; ?>
+	<?php echo  Form::close() ; ?>
+<?php \Laravel\Section::stop(); ?>
+
+<?php echo view('layouts.main')->with(get_defined_vars())->render(); ?>

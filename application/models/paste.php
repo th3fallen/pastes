@@ -1,6 +1,6 @@
 <?php
 
-class Paste extends Eloquent\Model {
+class Paste extends Eloquent {
 
 	public static $table = 'pastes';
 	public static $timestamps = true;

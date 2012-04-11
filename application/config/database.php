@@ -18,6 +18,20 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
+	| PDO Fetch Style
+	|--------------------------------------------------------------------------
+	|
+	| By default, database results will be returned as instances of the PHP
+	| stdClass object; however, you may wish to retrieve records as arrays
+	| instead of objects. Here you can control the PDO fetch style of the
+	| database queries run by your application.
+	|
+	*/
+
+	'fetch' => PDO::FETCH_CLASS,
+
+	/*
+	|--------------------------------------------------------------------------
 	| Default Database Connection
 	|--------------------------------------------------------------------------
 	|
@@ -28,7 +42,7 @@ return array(
 	|
 	*/
 
-	'default' => 'sqlite',
+	'default' => 'mysql',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -43,8 +57,6 @@ return array(
 	| so make sure you have the PDO drivers for your particlar database of
 	| choice installed on your machine.
 	|
-	| Drivers: 'mysql', 'pgsql', 'sqlsrv', 'sqlite'.
-	|
 	*/
 
 	'connections' => array(
@@ -58,9 +70,9 @@ return array(
 		'mysql' => array(
 			'driver'   => 'mysql',
 			'host'     => 'localhost',
-			'database' => 'database',
+			'database' => 'paste',
 			'username' => 'root',
-			'password' => '',
+			'password' => 'wimble',
 			'charset'  => 'utf8',
 			'prefix'   => '',
 		),
@@ -101,7 +113,11 @@ return array(
 
 	'redis' => array(
 
-		'default' => array('host' => '127.0.0.1', 'port' => 6379),
+		'default' => array(
+			'host'     => '127.0.0.1',
+			'port'     => 6379,
+			'database' => 0
+		),
 
 	),
 
